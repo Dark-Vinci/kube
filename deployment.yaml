@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec:
+  selector:
+    matchLabels:
+      app: name
+
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: name
+    spec:
+      containers:
+        - name: api
+          image: ademolaolutomiwa4real/kub-api
+          # livenessProbe:
+            # httpGet:
+            #   path: /
+            #   port: 3000
+            #   # headers:
+            # periodSeconds: 10 #seconds
+            # initialDelaySeconds: 5
+
+        - name: auth 
+          image: ademolaolutomiwa4real/kub-auth
+          # livenessProbe:
+          #   httpGet:
+          #     path: /health-check
+          #     port: 3000
+          #     # headers:
+          #   periodSeconds: 10 #seconds
+          #   initialDelaySeconds: 5
