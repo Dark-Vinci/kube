@@ -1,0 +1,4 @@
+commit
+push to docker hub
+pull from docker hub
+apply env -> persistent-volume -> persistent-volume-claims -> service -> deployment

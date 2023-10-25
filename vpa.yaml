@@ -1,0 +1,32 @@
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: hamster-vpa
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind: Deployment
+    name: app-deployment
+
+  updatePolicy:
+    updateMode: "Auto"
+
+  resourcePolicy:
+    containerPolicies:
+    - containerName: 'container-1'
+      minAllowed:
+        cpu: 2
+        memory: 50Mi
+      maxAllowed:
+        cpu: 8
+        memory: 500Mi
+      controlledResources: ["cpu", "memory"]
+
+    - containerName: 'container-2'
+      minAllowed:
+        cpu: 2
+        memory: 50Mi
+      maxAllowed:
+        cpu: 8
+        memory: 500Mi
+      controlledResources: ["cpu", "memory"]
