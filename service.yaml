@@ -26,7 +26,18 @@ spec:
       port: 3000 #to running machine
       targetPort: 3000 #from container
       name: http
-  type: LoadBalancer #
+  type: LoadBalancer # ClusterIP[Ip assigned to the container by the cluster, also have load balancing capability, changes quite often but not as much as NodePort]
 
 # service should come before deployment
+
+# k8s comes with coreDNS, this create domain name for all services running in k8s
+# the dns name is the name [service name].namespace
+
+
+# TWO OPTIONS FOR DEPLOYING APPLICATION TO PROD 
+# 1) Kops
+#   -> spin out your ec2 instance, configure and install all necessary dependencies
+#   -> Managed with KOPS
+
+# 2) Use fully blown k8s cluster management, i.e aws EKS, Google GKE
 

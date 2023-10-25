@@ -12,7 +12,7 @@ spec:
     type: DirectoryOrCreate
   accessMode:
     - ReadWriteOnce #can be mounted as a read write volume by a single node[multiple pod]
-    # - ReadOnlyMany #can be mounted as a read only volume by a multiple
+    # - ReadOnlyMany #can be mounted as a read only volume by a multiple node
     # - ReadWriteMany #can be mounted as a read write volume by multiple nodes
 
   # capacity:
