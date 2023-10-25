@@ -13,9 +13,18 @@ spec:
       labels:
         app: name
     spec:
+      volumes:
+        - name: name-volumes
+          hostPath:
+            path: /data
+            type: DirectoryOrCreate
+          # emptyDir: {}
       containers:
         - name: api
           image: ademolaolutomiwa4real/kub-api
+          volumeMounts:
+            - mountPath: /usr/src/app/src/logs
+              name: name-volumes
           # livenessProbe:
             # httpGet:
             #   path: /
