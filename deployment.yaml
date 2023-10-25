@@ -14,17 +14,34 @@ spec:
         app: name
     spec:
       volumes:
-        - name: name-volumes
-          hostPath:
-            path: /data
-            type: DirectoryOrCreate
-          # emptyDir: {}
+        # - name: name-volumes
+        #   hostPath: #the virtual machine[Node specific]
+        #     path: /data #more like a bind mount
+        #     type: DirectoryOrCreate
+          # emptyDir: {} [pod specific]
+
+          #csi[interface with NFS(network file system{EFS for amazon})]
+
+        - name: my-own-volumes
+          persistentVolumeClaim:
+            claimName: host-pvc
+
       containers:
         - name: api
           image: ademolaolutomiwa4real/kub-api
           volumeMounts:
             - mountPath: /usr/src/app/src/logs
-              name: name-volumes
+              name: my-own-volumes
+          env:
+            - name: STORY_FOLDER,
+              # value: 'story folder'
+
+              valueFrom:
+                configMapKeyRef:
+                  name: environment-variable-env
+                  key: createdKey
+
+            
           # livenessProbe:
             # httpGet:
             #   path: /

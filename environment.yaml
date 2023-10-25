@@ -1,0 +1,8 @@
+apiVersion: v1 
+kind: ConfigMap
+metadata:
+  name: environment-variable-env
+data:
+  key: 'value'
+  createdKey: 'story'
+
